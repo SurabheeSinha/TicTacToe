@@ -1,14 +1,20 @@
 package com.surabheesinha.app;
 
 import android.os.Bundle;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.FrameLayout;
+import android.widget.TextView;
+
+import com.surabheesinha.app.Fragment.Welcome;
 
 public class MainActivity extends AppCompatActivity {
     Button buttons[] = new Button[9];
-    private static final int[] BUTTON_IDS = {
+    Button letsplay;
+    TextView welcomeText;
+    /*private static final int[] BUTTON_IDS = {
             R.id.button00,
             R.id.button01,
             R.id.button02,
@@ -25,13 +31,35 @@ public class MainActivity extends AppCompatActivity {
 
     int playerId = 1;
 
-    int spots[][] = new int[3][3];
+    int spots[][] = new int[3][3];*/
+
+    FrameLayout frameLayout;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        int counter = 0;
+        /*welcomeText = (TextView) findViewById(R.id.textView);
+        letsplay = (Button)findViewById(R.id.letsplay);
+        Animation anim = new AlphaAnimation(0.0f, 1.0f);
+        anim.setDuration(900);
+        anim.setStartOffset(20);
+        anim.setRepeatMode(Animation.REVERSE);
+        anim.setRepeatCount(Animation.INFINITE);
+        welcomeText.startAnimation(anim);*/
+
+        frameLayout= (FrameLayout)findViewById(R.id.container);
+        fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.container,new Welcome());
+        fragmentTransaction.commit();
+
+
+
+
+        /*int counter = 0;
         for(int id : BUTTON_IDS) {
             final Button button = findViewById(id);
             button.setOnClickListener(new View.OnClickListener() {
@@ -93,13 +121,13 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
             buttons[counter++] = button;
-        }
+        }*/
     }
-    private void computeState() {
+    /*private void computeState() {
         Toast.makeText(this, "selectedRow: " + selectedRow + "selectedCol: " + selectedCol + "playerId:" + playerId, Toast.LENGTH_SHORT).show();
         spots[selectedRow][selectedCol] = playerId;
 
         playerId = playerId == 1 ? 2 : 1;
-    }
+    }*/
 }
 
