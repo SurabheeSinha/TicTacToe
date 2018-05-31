@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +16,6 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.surabheesinha.app.R;
 
@@ -77,17 +77,9 @@ public class PlayersInfo extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.playersinfo, container, false);
         playerName1 =(EditText)view.findViewById(R.id.pname1);
+        playerName1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         playerName2 =(EditText)view.findViewById(R.id.pname2);
-
-
-
-
-
-
-
-
-
-
+        playerName2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
         letsplay = (Button)view.findViewById(R.id.letsplay);
         selectP1= (Spinner)view.findViewById(R.id.pselect1);
         textmarkSelectedbyP2 =(TextView)view.findViewById(R.id.textmarkSelectedbyP2);
@@ -112,7 +104,7 @@ public class PlayersInfo extends Fragment {
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
                 if(position>0){
                 markSelectedbyP1 = list.get(position);
-                Toast.makeText(getContext(), list.get(position), Toast.LENGTH_SHORT).show();
+               // Toast.makeText(getContext(), list.get(position), Toast.LENGTH_SHORT).show();
                 Log.e("markSelectedbyP1",markSelectedbyP1);
                 if (markSelectedbyP1=="X"){
                     markSelectedbyP2 = "O";
@@ -139,11 +131,11 @@ public class PlayersInfo extends Fragment {
             public void onClick(View v) {
                 String p1name=playerName1.getText().toString();;
                 String p2name=playerName2.getText().toString();
-                if(p1name=="null"){
+                if(playerName1.getText().toString().matches("")){
                     p1name="Player1";
                 }
 
-                if(p2name=="null"){
+                if(playerName1.getText().toString().matches("")){
                     p2name="Player2";
                 }
 

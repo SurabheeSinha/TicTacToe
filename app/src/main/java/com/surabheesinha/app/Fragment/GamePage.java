@@ -1,17 +1,21 @@
 package com.surabheesinha.app.Fragment;
 
+import android.content.DialogInterface;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.surabheesinha.app.R;
@@ -38,7 +42,7 @@ public class GamePage extends Fragment {
             R.id.button21,
             R.id.button22,
     };
-
+    int clicked = 1;
     int selectedRow;
     int selectedCol;
 
@@ -72,10 +76,12 @@ public class GamePage extends Fragment {
     private String player2name;
     private String markp1;
     private String markp2;
-    String p1name;
-    String p2name;
+    String p1name ;
+    String p2name ;
     Drawable img;
     int index = 0;
+    TextView playername;
+    TextView markSelected;
 
 
     private OnFragmentInteractionListener mListener;
@@ -115,6 +121,9 @@ public class GamePage extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.gamepage, container, false);
+        playername = (TextView) view.findViewById(R.id.name);
+        markSelected =(TextView)view.findViewById(R.id.mark);
+
         Bundle bundle = this.getArguments();
         if (getArguments() != null) {
             player1name= getArguments().getString("player1name");
@@ -126,6 +135,7 @@ public class GamePage extends Fragment {
             markp2= getArguments().getString("P2 mark");
             Log.e("P2mark",markp2);
         }
+
 
         int counter = 0;
 
@@ -184,6 +194,7 @@ public class GamePage extends Fragment {
                     // Set v.image corresponding to the current player
                     if(playerId==1){
                         p1name = player1name;
+
                         if(markp1=="O"){
                             img = getContext().getResources().getDrawable(R.drawable.iconknot);
                             //  ViewGroup.LayoutParams params = (ViewGroup.LayoutParams) view.getLayoutParams();
@@ -194,6 +205,7 @@ public class GamePage extends Fragment {
                         }
                     }else if(playerId ==2){
                         p2name = player2name;
+
                         if(markp2=="O"){
                             img = getContext().getResources().getDrawable(R.drawable.iconknot);
                             Log.e("p2",p2name+markp2);
@@ -227,6 +239,20 @@ public class GamePage extends Fragment {
                     String text = playerId == 1 ? "1" : "2";
                     if (index >= 0 && index < 9) {
                         //buttons[index].setText(text);
+                       if(playerId==1)
+                           {
+                               playername.setText(p1name);
+                               markSelected.setText(markp1);
+                               clicked++;
+
+                           }
+                       else
+                           {
+                               playername.setText(p2name);
+                               markSelected.setText(markp2);
+                               clicked++;
+                           }
+
                         buttons[index].setCompoundDrawablesWithIntrinsicBounds( img, null, null, null);
                         buttons[index].setClickable(false);
                     }
@@ -239,47 +265,149 @@ public class GamePage extends Fragment {
         return view;
     }
     private void computeState() {
+
         int winner = 0;
         int points = playerId == 1 ? player1Points : player2Points;
+        int numberofclicks =10;
 
         if (selectedRow == 0) {
             row0Product *= points;
+
         }
         if (selectedRow == 1) {
             row1Product *= points;
+
         }
         if (selectedRow == 2) {
             row2Product *= points;
+
         }
         if (selectedRow == selectedCol) {
             diag1Product *= points;
+
         }
         if (selectedRow + selectedCol == 2) {
             diag2Product *= points;
+
         }
         if (selectedCol == 0) {
             col0Product *= points;
+
         }
         if (selectedCol == 1) {
             col1Product *= points;
+
         }
         if (selectedCol == 2) {
             col2Product *= points;
+
         }
 
         if (row0Product == pointsForPlayer1ToWin || row1Product== pointsForPlayer1ToWin || row2Product== pointsForPlayer1ToWin || col0Product== pointsForPlayer1ToWin || col1Product== pointsForPlayer1ToWin || col2Product== pointsForPlayer1ToWin || diag1Product== pointsForPlayer1ToWin || diag2Product== pointsForPlayer1ToWin) {
             winner = 1;
+            /*String wonby = p1name;
+            alertBox(p1name);*/
             buttons[index].setClickable(false);
 
         } else if (row0Product == pointsForPlayer2ToWin || row1Product== pointsForPlayer2ToWin || row2Product== pointsForPlayer2ToWin || col0Product== pointsForPlayer2ToWin || col1Product== pointsForPlayer2ToWin || col2Product== pointsForPlayer2ToWin || diag1Product== pointsForPlayer2ToWin || diag2Product== pointsForPlayer2ToWin) {
             winner = 2;
+            /*String wonby = p2name;
+            alertBox(p1name);*/
             buttons[index].setClickable(false);
         }
 
         if (winner != 0) {
-            Toast.makeText(getContext(), "Won: " + winner, Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getContext(), "Won: " + winner, Toast.LENGTH_SHORT).show();
+            if(winner ==1){
+                winner = 1;
+                String wonby = p1name;
+                buttons[index].setClickable(false);
+                alertBox(p1name);
+            }else{
+                winner = 2;
+                String wonby = p2name;
+                buttons[index].setClickable(false);
+                alertBox(p2name);}
+        }else if(clicked == numberofclicks){
+            //Toast.makeText(getContext(), "Won: None" , Toast.LENGTH_SHORT).show();
+            alertBoxDraw();
+
         }
         playerId = playerId == 1 ? 2 : 1;
+    }
+    public void alertBox(String wonby){
+        final AlertDialog.Builder builder =
+                new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
+        builder.setTitle("Hey "+wonby +", You Won !!");
+        builder.setMessage("Congratulations " + wonby + "!!");
+        //builder.setPositiveButton("Play Again", null);//second parameter used for onclicklistener
+        //builder.setNegativeButton("Exit", null);
+
+        //exit and PlayAgain
+        builder.setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Fragment fragment = new PlayersInfo();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0);
+            }
+        });
+        builder.setOnKeyListener(new DialogInterface.OnKeyListener() {
+
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                Toast.makeText(getContext(),"Select from the Alert Box",Toast.LENGTH_LONG).show();
+                return keyCode == KeyEvent.KEYCODE_BACK;
+            }
+        });
+        builder.show();
+
+    }
+    public void alertBoxDraw(){
+        AlertDialog.Builder builder =
+                new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
+        builder.setTitle("Oop's Its a Draw");
+        builder.setMessage("No worries, you can start the game again" );
+       // builder.setPositiveButton("Restart", null);//second parameter used for onclicklistener
+        builder.setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                Fragment fragment = new PlayersInfo();
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+
+            }
+        });
+        builder.setNegativeButton("Exit", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                System.exit(0);
+            }
+        });
+        builder.setOnKeyListener(new DialogInterface.OnKeyListener() {
+
+            @Override
+            public boolean onKey(DialogInterface dialog, int keyCode, KeyEvent event) {
+                Toast.makeText(getContext(),"Select from the Alert Box",Toast.LENGTH_LONG).show();
+                return keyCode == KeyEvent.KEYCODE_BACK;
+            }
+        });
+        builder.show();
+        //exit and PlayAgain
+
     }
 
 

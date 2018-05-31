@@ -24,13 +24,14 @@
             android:id="@+id/ll1Player1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal">
+            android:orientation="horizontal"
+            android:layout_marginTop="20dp">
 
             <TextView
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="@string/player1"
-                android:textSize="22dp"
+                android:textSize="30dp"
                 android:textStyle="bold"
                 android:gravity="center"
                 android:layout_gravity="center"/>
@@ -38,20 +39,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
+
                 <EditText
+                    android:id="@+id/pname1"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/pname1"
+                    android:fontFamily="cursive"
                     android:hint="Enter your name"
-                    />
+                    android:inputType="textCapWords"
+                    android:textColor="@color/colorAccent"
+                    android:textSize="30dp"
+                    android:textStyle="bold" />
 
                 <Spinner
                     android:id="@+id/pselect1"
                     android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:clipToPadding="false"
-                    android:elevation="2dp"
-                    >
+                    android:elevation="2dp">
 
                 </Spinner>
             </LinearLayout>
@@ -59,7 +64,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="3dp"/>
+            android:layout_height="10dp"/>
         <LinearLayout
             android:id="@+id/ll1Player2"
             android:layout_width="match_parent"
@@ -70,10 +75,10 @@
                 android:layout_width="120dp"
                 android:layout_height="wrap_content"
                 android:text="@string/player2"
-                android:textSize="22dp"
                 android:textStyle="bold"
-                android:layout_gravity="center"
                 android:gravity="center"
+                android:layout_gravity="center"
+                android:textSize="30dp"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -84,7 +89,11 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter your name"
                     android:id="@+id/pname2"
-                    />
+                    android:textColor="@color/colorAccent"
+                    android:fontFamily="cursive"
+                    android:textStyle="bold"
+                    android:textSize="30dp"
+                    android:inputType="textCapWords"/>
 
                 <!--<Spinner
                     android:id="@+id/pselect2"
@@ -103,21 +112,25 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:orientation="horizontal">
+
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text=" Your mark is "
-                        android:textSize="18dp"
+                        android:fontFamily="cursive"
+                        android:paddingRight="20dp"
+                        android:text=" Your mark is"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold"/>
+                        android:textSize="30dp" />
 
                     <TextView
                         android:id="@+id/textmarkSelectedbyP2"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
-                        android:textSize="20dp"
+                        android:textSize="30dp"
                         android:textColor="@color/colorAccent"
-                        android:textStyle="bold"/>
+                        android:fontFamily="cursive"
+                        android:textStyle="bold"
+                        />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>
@@ -125,7 +138,7 @@
 
         <View
             android:layout_width="match_parent"
-            android:layout_height="10dp"/>
+            android:layout_height="15dp"/>
 
         <Button
             android:id="@+id/letsplay"
