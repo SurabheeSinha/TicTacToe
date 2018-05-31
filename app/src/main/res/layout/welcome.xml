@@ -31,7 +31,7 @@
             android:layout_centerHorizontal="true"
             android:layout_marginTop="22dp"
             android:background="#008B8B"
-            android:text="@string/next"
+            android:text="Let's Play"
             android:textSize="15dp"
             android:textStyle="italic"
             android:visibility="visible" />

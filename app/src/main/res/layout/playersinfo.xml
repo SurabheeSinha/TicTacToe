@@ -41,17 +41,17 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Please enter your name"
                     android:id="@+id/pname1"
+                    android:hint="Enter your name"
                     />
 
                 <Spinner
                     android:id="@+id/pselect1"
-                    android:layout_width="match_parent"
+                    android:layout_width="150dp"
                     android:layout_height="30dp"
                     android:clipToPadding="false"
                     android:elevation="2dp"
-                    android:text="Select A Mark">
+                    >
 
                 </Spinner>
             </LinearLayout>
@@ -82,7 +82,7 @@
                 <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Please enter your name"
+                    android:hint="Enter your name"
                     android:id="@+id/pname2"
                     />
 
@@ -108,7 +108,7 @@
                         android:layout_height="wrap_content"
                         android:text=" Your mark is "
                         android:textSize="18dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorAccent"
                         android:textStyle="bold"/>
 
                     <TextView
@@ -116,7 +116,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="20dp"
-                        android:textColor="@color/colorPrimaryDark"
+                        android:textColor="@color/colorAccent"
                         android:textStyle="bold"/>
                 </LinearLayout>
             </LinearLayout>
@@ -133,7 +133,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="#008B8B"
-            android:text="@string/next"
+            android:text="Let's Play"
             android:textSize="15dp"
             android:textStyle="italic"
             android:visibility="visible"

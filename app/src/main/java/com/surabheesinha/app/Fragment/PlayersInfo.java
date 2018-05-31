@@ -3,12 +3,15 @@ package com.surabheesinha.app.Fragment;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -34,6 +37,9 @@ public class PlayersInfo extends Fragment {
     String markSelectedbyP1=null;
     String markSelectedbyP2=null;
     TextView textmarkSelectedbyP2;
+    Button letsplay;
+    String p1name=null;
+    String p2name=null;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -70,14 +76,25 @@ public class PlayersInfo extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.playersinfo, container, false);
-        playerName1 = (EditText)view.findViewById(R.id.pname1);
+        playerName1 =(EditText)view.findViewById(R.id.pname1);
         playerName2 =(EditText)view.findViewById(R.id.pname2);
+
+
+
+
+
+
+
+
+
+
+        letsplay = (Button)view.findViewById(R.id.letsplay);
         selectP1= (Spinner)view.findViewById(R.id.pselect1);
         textmarkSelectedbyP2 =(TextView)view.findViewById(R.id.textmarkSelectedbyP2);
         //selectP2= (Spinner)view.findViewById(R.id.pselect2);
        // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,selectP1);
         final List<String> list = new ArrayList<String>();
-        list.add("Select a Mark");
+        list.add("Mark");
         list.add("O");
         list.add("X");
         final List<String> listp2 = new ArrayList<String>();
@@ -117,6 +134,45 @@ public class PlayersInfo extends Fragment {
         });
 
         textmarkSelectedbyP2.setText(markSelectedbyP2);
+        letsplay.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                String p1name=playerName1.getText().toString();;
+                String p2name=playerName2.getText().toString();
+                if(p1name=="null"){
+                    p1name="Player1";
+                }
+
+                if(p2name=="null"){
+                    p2name="Player2";
+                }
+
+                Log.e("Player1", p1name );
+                Log.e("Player2", p2name );
+
+                if(markSelectedbyP1==null||markSelectedbyP2==null){
+                    markSelectedbyP1="O";
+                    markSelectedbyP2="X";
+
+                }
+
+                Fragment fragment = new GamePage();
+
+                Bundle args = new Bundle();
+                args.putString("player1name",p1name);
+                args.putString("player2name",p2name);
+                args.putString("P1 mark",markSelectedbyP1);
+                args.putString("P2 mark",markSelectedbyP2);
+                fragment.setArguments(args);
+
+
+                FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.container, fragment);
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.commit();
+            }
+        });
         /*if (markSelectedbyP1=="X"){
             if(!listp2.isEmpty()){
                 listp2.clear();
