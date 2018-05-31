@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.surabheesinha.app.Fragment.PlayersInfo"
-    android:background="@drawable/bg3">
+    android:background="@drawable/imageshorizontal">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -16,7 +16,7 @@
             android:gravity="center"
             android:text="@string/welcome"
             android:textAppearance="@style/TextAppearance.AppCompat.Large"
-            android:textColor="@color/colorAccent"
+
             android:textStyle="bold"
             android:textSize="60dp"/>
 
@@ -34,7 +34,8 @@
                 android:textSize="30dp"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:layout_gravity="center"/>
+                android:layout_gravity="center"
+                android:fontFamily="cursive"/>
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +48,6 @@
                     android:fontFamily="cursive"
                     android:hint="Enter your name"
                     android:inputType="textCapWords"
-                    android:textColor="@color/colorAccent"
                     android:textSize="30dp"
                     android:textStyle="bold" />
 
@@ -79,6 +79,7 @@
                 android:gravity="center"
                 android:layout_gravity="center"
                 android:textSize="30dp"
+                android:fontFamily="cursive"
                 />
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -89,7 +90,6 @@
                     android:layout_height="wrap_content"
                     android:hint="Enter your name"
                     android:id="@+id/pname2"
-                    android:textColor="@color/colorAccent"
                     android:fontFamily="cursive"
                     android:textStyle="bold"
                     android:textSize="30dp"
@@ -119,7 +119,6 @@
                         android:fontFamily="cursive"
                         android:paddingRight="20dp"
                         android:text=" Your mark is"
-                        android:textColor="@color/colorAccent"
                         android:textSize="30dp" />
 
                     <TextView
@@ -127,10 +126,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:textSize="30dp"
-                        android:textColor="@color/colorAccent"
                         android:fontFamily="cursive"
-                        android:textStyle="bold"
-                        />
+                        android:textStyle="bold" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

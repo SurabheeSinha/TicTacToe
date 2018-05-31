@@ -60,12 +60,7 @@ public class Welcome extends Fragment {
         View view = inflater.inflate(R.layout.welcome, container, false);
         letsplay=(Button)view.findViewById(R.id.letsplay);
         welcomeText=(TextView)view.findViewById(R.id.textView);
-        /*Animation anim = new AlphaAnimation(0.0f, 1.0f);
-        anim.setDuration(900);
-        anim.setStartOffset(20);
-        anim.setRepeatMode(Animation.REVERSE);
-        anim.setRepeatCount(Animation.INFINITE);
-        welcomeText.startAnimation(anim);*/
+
         letsplay.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -89,16 +84,7 @@ public class Welcome extends Fragment {
         }
     }
 
-    /*@Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
+
 
     @Override
     public void onDetach() {

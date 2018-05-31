@@ -20,14 +20,7 @@ import android.widget.Toast;
 
 import com.surabheesinha.app.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Activities that contain this fragment must implement the
- * {@link GamePage.OnFragmentInteractionListener} interface
- * to handle interaction events.
- * Use the {@link GamePage#newInstance} factory method to
- * create an instance of this fragment.
- */
+
 public class GamePage extends Fragment {
 
     Button buttons[] = new Button[9];
@@ -71,7 +64,7 @@ public class GamePage extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
+
     private String player1name;
     private String player2name;
     private String markp1;
@@ -216,26 +209,6 @@ public class GamePage extends Fragment {
 
                     }
 
-                   /* if(playerId==1 && markp1=="O"){
-                         img = getContext().getResources().getDrawable(R.drawable.iconknot);
-                         Log.e("p1",p1name+markp1);
-                    }
-
-                    if(playerId==1 && markp1=="X"){
-                         img = getContext().getResources().getDrawable(R.drawable.iconcross);
-                        Log.e("p1",p1name+markp1);
-                    }
-                    if(playerId==2 && markp1=="O"){
-                         img = getContext().getResources().getDrawable(R.drawable.iconknot);
-                        Log.e("p2",p2name+markp2);
-                    }
-                    if(playerId==2 && markp1=="X"){
-                         img = getContext().getResources().getDrawable(R.drawable.iconcross);
-                        Log.e("p2",p1name+markp2);
-                    }*/
-
-
-                   // Drawable img = playerId == 1 && markp1=="O" ? getContext().getResources().getDrawable(R.drawable.iconknot) : getContext().getResources().getDrawable(R.drawable.iconcross);
                     String text = playerId == 1 ? "1" : "2";
                     if (index >= 0 && index < 9) {
                         //buttons[index].setText(text);
@@ -340,10 +313,7 @@ public class GamePage extends Fragment {
                 new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Hey "+wonby +", You Won !!");
         builder.setMessage("Congratulations " + wonby + "!!");
-        //builder.setPositiveButton("Play Again", null);//second parameter used for onclicklistener
-        //builder.setNegativeButton("Exit", null);
-
-        //exit and PlayAgain
+        builder.setCancelable(false);
         builder.setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
@@ -378,6 +348,7 @@ public class GamePage extends Fragment {
                 new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Oop's Its a Draw");
         builder.setMessage("No worries, you can start the game again" );
+        builder.setCancelable(false);
        // builder.setPositiveButton("Restart", null);//second parameter used for onclicklistener
         builder.setPositiveButton("Play Again", new DialogInterface.OnClickListener() {
             @Override
@@ -428,16 +399,7 @@ public class GamePage extends Fragment {
         mListener = null;
     }
 
-    /**
-     * This interface must be implemented by activities that contain this
-     * fragment to allow an interaction in this fragment to be communicated
-     * to the activity and potentially other fragments contained in that
-     * activity.
-     * <p>
-     * See the Android Training lesson <a href=
-     * "http://developer.android.com/training/basics/fragments/communicating.html"
-     * >Communicating with Other Fragments</a> for more information.
-     */
+
     public interface OnFragmentInteractionListener {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);

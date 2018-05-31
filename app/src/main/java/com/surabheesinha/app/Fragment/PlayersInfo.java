@@ -24,8 +24,7 @@ import java.util.List;
 
 
 public class PlayersInfo extends Fragment {
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
+
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -33,7 +32,6 @@ public class PlayersInfo extends Fragment {
     EditText playerName2;
     Spinner selectP1;
     Spinner selectP2;
-    //markSelectedbyP1
     String markSelectedbyP1=null;
     String markSelectedbyP2=null;
     TextView textmarkSelectedbyP2;
@@ -74,7 +72,7 @@ public class PlayersInfo extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+
         View view = inflater.inflate(R.layout.playersinfo, container, false);
         playerName1 =(EditText)view.findViewById(R.id.pname1);
         playerName1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
@@ -165,51 +163,6 @@ public class PlayersInfo extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-        /*if (markSelectedbyP1=="X"){
-            if(!listp2.isEmpty()){
-                listp2.clear();
-                listp2.add("0");
-
-            }
-            else{
-                listp2.add("0");
-            }
-        }
-        else{
-            if(!listp2.isEmpty()){
-                listp2.clear();
-                listp2.add("X");
-
-            }
-            else{
-                listp2.add("X");
-            }
-        }*/
-        /*ArrayAdapter<String> arrayAdapterP2 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,listp2);
-        arrayAdapterP2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        selectP1.setPrompt("Select A Mark");
-        selectP2.setAdapter(arrayAdapterP2);
-        selectP2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
-
-            @Override
-            public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-                //Log.e("markSelectedbyP1inP2",markSelectedbyP1);
-                if (position > 0) {
-                    markSelectedbyP2 = listp2.get(position);
-                    Toast.makeText(getContext(), listp2.get(position), Toast.LENGTH_SHORT).show();
-                    Log.e("markSelectedbyP2", markSelectedbyP2);
-                    Log.e("I am in onItemSelected2", "ABC ");
-
-
-                }
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-
-            }
-        });*/
 
 
 
@@ -223,16 +176,6 @@ public class PlayersInfo extends Fragment {
         }
     }
 
-  /*  @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
-    }*/
 
     @Override
     public void onDetach() {
