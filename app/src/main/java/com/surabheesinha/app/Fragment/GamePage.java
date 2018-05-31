@@ -303,7 +303,7 @@ public class GamePage extends Fragment {
                 alertBox(p2name);}
         }else if(clicked == numberofclicks){
             //Toast.makeText(getContext(), "Won: None" , Toast.LENGTH_SHORT).show();
-            alertBoxDraw();
+            alertBoxNoWinner();
 
         }
         playerId = playerId == 1 ? 2 : 1;
@@ -343,7 +343,7 @@ public class GamePage extends Fragment {
         builder.show();
 
     }
-    public void alertBoxDraw(){
+    public void alertBoxNoWinner(){
         AlertDialog.Builder builder =
                 new AlertDialog.Builder(getContext(), R.style.AppCompatAlertDialogStyle);
         builder.setTitle("Oop's Its a Draw");
