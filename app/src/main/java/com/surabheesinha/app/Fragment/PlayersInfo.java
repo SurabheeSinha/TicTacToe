@@ -30,14 +30,14 @@ public class PlayersInfo extends Fragment {
 
     EditText playerName1;
     EditText playerName2;
-    Spinner selectP1;
+    Spinner player1MarkSelect;
     Spinner selectP2;
-    String markSelectedbyP1=null;
-    String markSelectedbyP2=null;
-    TextView textmarkSelectedbyP2;
-    Button letsplay;
-    String p1name=null;
-    String p2name=null;
+    String markSelectedbyP1 = null;
+    String markSelectedbyP2 = null;
+    TextView textMarkForP2;
+    Button letsPlayButton;
+    String p1name = null;
+    String p2name = null;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
@@ -74,87 +74,70 @@ public class PlayersInfo extends Fragment {
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.playersinfo, container, false);
-        playerName1 =(EditText)view.findViewById(R.id.pname1);
+        playerName1 = (EditText) view.findViewById(R.id.pname1);
         playerName1.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        playerName2 =(EditText)view.findViewById(R.id.pname2);
+        playerName2 = (EditText) view.findViewById(R.id.pname2);
         playerName2.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_FLAG_CAP_WORDS);
-        letsplay = (Button)view.findViewById(R.id.letsplay);
-        selectP1= (Spinner)view.findViewById(R.id.pselect1);
-        textmarkSelectedbyP2 =(TextView)view.findViewById(R.id.textmarkSelectedbyP2);
-        //selectP2= (Spinner)view.findViewById(R.id.pselect2);
-       // ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,selectP1);
+        letsPlayButton = (Button) view.findViewById(R.id.letsplay);
+        player1MarkSelect = (Spinner) view.findViewById(R.id.pselect1);
+        textMarkForP2 = (TextView) view.findViewById(R.id.textmarkSelectedbyP2);
         final List<String> list = new ArrayList<String>();
         list.add("Mark");
         list.add("O");
         list.add("X");
-        final List<String> listp2 = new ArrayList<String>();
-        listp2.add("Select a Mark");
-        //listp2.add("X");
-        //listp2.add("O");
-        ArrayAdapter<String> arrayAdapterP1 = new ArrayAdapter<String>(getContext(),android.R.layout.simple_list_item_1,list);
+        ArrayAdapter<String> arrayAdapterP1 = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1, list);
         arrayAdapterP1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        selectP1.setPrompt("Select A Mark");
-        selectP1.setAdapter(arrayAdapterP1);
+        player1MarkSelect.setPrompt("Select a mark");
+        player1MarkSelect.setAdapter(arrayAdapterP1);
 
-        selectP1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener()
-        {
+        player1MarkSelect.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> arg0, View arg1, int position, long id) {
-                if(position>0){
-                markSelectedbyP1 = list.get(position);
-               // Toast.makeText(getContext(), list.get(position), Toast.LENGTH_SHORT).show();
-                Log.e("markSelectedbyP1",markSelectedbyP1);
-                if (markSelectedbyP1=="X"){
-                    markSelectedbyP2 = "O";
-                    textmarkSelectedbyP2.setText(markSelectedbyP2);
+                if (position > 0) {
+                    markSelectedbyP1 = list.get(position);
+                    Log.e("markSelectedbyP1", markSelectedbyP1);
+                    if (markSelectedbyP1 == "X") {
+                        markSelectedbyP2 = "O";
+                        textMarkForP2.setText(markSelectedbyP2);
                     }
-
-                }
-                else{
+                } else {
                     markSelectedbyP2 = "X";
-                    textmarkSelectedbyP2.setText(markSelectedbyP2);
+                    textMarkForP2.setText(markSelectedbyP2);
                 }
             }
-
             @Override
-            public void onNothingSelected(AdapterView<?> arg0) {
-
-
-            }
+            public void onNothingSelected(AdapterView<?> arg0) {}
         });
 
-        textmarkSelectedbyP2.setText(markSelectedbyP2);
-        letsplay.setOnClickListener(new View.OnClickListener() {
+        textMarkForP2.setText(markSelectedbyP2);
+        letsPlayButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String p1name=playerName1.getText().toString();;
-                String p2name=playerName2.getText().toString();
-                if(playerName1.getText().toString().matches("")){
-                    p1name="Player1";
+                String p1name = playerName1.getText().toString();
+                ;
+                String p2name = playerName2.getText().toString();
+                if (playerName1.getText().toString().matches("")) {
+                    p1name = "Player1";
                 }
 
-                if(playerName1.getText().toString().matches("")){
-                    p2name="Player2";
+                if (playerName1.getText().toString().matches("")) {
+                    p2name = "Player2";
                 }
 
-                Log.e("Player1", p1name );
-                Log.e("Player2", p2name );
+                Log.e("Player1", p1name);
+                Log.e("Player2", p2name);
 
-                if(markSelectedbyP1==null||markSelectedbyP2==null){
-                    markSelectedbyP1="O";
-                    markSelectedbyP2="X";
-
+                if (markSelectedbyP1 == null || markSelectedbyP2 == null) {
+                    markSelectedbyP1 = "O";
+                    markSelectedbyP2 = "X";
                 }
-
                 Fragment fragment = new GamePage();
-
                 Bundle args = new Bundle();
-                args.putString("player1name",p1name);
-                args.putString("player2name",p2name);
-                args.putString("P1 mark",markSelectedbyP1);
-                args.putString("P2 mark",markSelectedbyP2);
+                args.putString("player1name", p1name);
+                args.putString("player2name", p2name);
+                args.putString("P1 mark", markSelectedbyP1);
+                args.putString("P2 mark", markSelectedbyP2);
                 fragment.setArguments(args);
-
 
                 FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
@@ -163,7 +146,6 @@ public class PlayersInfo extends Fragment {
                 fragmentTransaction.commit();
             }
         });
-
 
 
         return view;
